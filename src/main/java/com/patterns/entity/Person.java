@@ -1,9 +1,9 @@
-package beans;
+package main.java.com.patterns.entity;
 
 import java.sql.Date;
 
 public class Person {
-	
+
 	private String id;
 	private String name;
 	private String lastName;
@@ -44,8 +44,4 @@ public class Person {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
-	
-
 }

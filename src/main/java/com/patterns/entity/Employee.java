@@ -1,8 +1,8 @@
-package beans;
+package main.java.com.patterns.entity;
 
 import java.sql.Date;
 
-public class Employee extends Person {
+public class Employee extends Person{
 
 	private Date startDate;
 	private String backUpEmployee;
@@ -38,7 +38,5 @@ public class Employee extends Person {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	
-	
 	
 }

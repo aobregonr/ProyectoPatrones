@@ -1,7 +1,8 @@
-package beans;
+package main.java.com.patterns.entity;
 
 public class User {
-	
+
+
 	private String userId;
 	private String name;
 	private String password;
@@ -39,5 +40,4 @@ public class User {
 	}
 	
 	
-
 }
