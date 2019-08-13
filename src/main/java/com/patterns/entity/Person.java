@@ -4,9 +4,10 @@ import java.sql.Date;
 
 public class Person {
 
-	private int id;
+	private String id;
 	private String name;
 	private String lastName;
+	private String gender;
 	private Date birthDay;
 	private String address;
 	
@@ -14,10 +15,10 @@ public class Person {
 		
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -44,4 +45,14 @@ public class Person {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
 }
