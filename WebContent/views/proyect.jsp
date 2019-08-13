@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +19,9 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse">
+
+  <div class="wrapper"> 
+
 	 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -135,16 +139,16 @@
               </p>
             </a>
           </li>
-           <li class="nav-item has-treeview">
-            <a href="proyect.html" class="nav-link">
+          <li class="nav-item has-treeview">
+            <a href="proyect.jsp" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Projects
+                Projectos
               </p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="team.html" class="nav-link">
+            <a href="team.jsp" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Equipos

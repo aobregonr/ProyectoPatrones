@@ -14,43 +14,42 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/ControllerProyect")
-public class ControllerProyect extends HttpServlet {
+@WebServlet("/ControllerTeam")
+public class ControllerTeam extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String nombreProyecto = request.getParameter("nombreProyecto");
-		String idEquipo = request.getParameter("idEquipo");
+		String nombreEquipo = request.getParameter("nombreEquipo");
 		String descripcion = request.getParameter("descripcion");
 		boolean result = true;
-		
-		if(nombreProyecto.isEmpty() || idEquipo.isEmpty() || descripcion.isEmpty())
+
+		if(nombreEquipo.isEmpty() || descripcion.isEmpty())
 		{
 			RequestDispatcher req = request.getRequestDispatcher("login.jsp");
 			req.include(request, response);
 		} else {
 			try {
 				Connection conn = DBConexion.Connect();
-				String query = "INSERT INTO proyect "
-						+ "(nameProyect, teamAsing, description)"
-						+" VALUES (?, ?, ?);";
-				
+				String query = "INSERT INTO team "
+					  + "(name, description, proyectId, userId)"
+					  +" VALUES (?, ?, ?, ?);";
+
 				PreparedStatement statement = conn.prepareStatement(query);
-				statement.setString(1, nombreProyecto);
-				statement.setInt(2, Integer.parseInt(idEquipo));
-				statement.setString(3, descripcion);
+				statement.setString(1, nombreEquipo);
+				statement.setString(2, descripcion);
+				statement.setInt(3, 0);
+				statement.setInt(4, 0);
 
 				result = statement.execute();
 				DBConexion.Disconnect();
 
-				RequestDispatcher req = request.getRequestDispatcher("proyect.jsp");
+				RequestDispatcher req = request.getRequestDispatcher("team.jsp");
 				req.forward(request, response);
 
-			}catch(SQLException ex) {
+			}catch(SQLException ex){
 				System.out.println(ex.getMessage());
 			}
-	    }
-		
+		}
 	}
 
 }

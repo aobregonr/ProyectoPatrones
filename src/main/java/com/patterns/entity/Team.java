@@ -10,6 +10,12 @@ public class Team{
 	public Team() {
 		
 	}
+
+	public Team(int id, String name){
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	
 	public Team(int id, String name, int proyectId, String description, int userId) {
 		super();
