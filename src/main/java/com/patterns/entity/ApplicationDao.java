@@ -17,8 +17,7 @@ public class ApplicationDao {
 		try {
 
 			// get the connection for the database
-			DBConexion dbc = new DBConexion();
-			Connection connection = dbc.Connect();
+			Connection connection = DBConexion.Connect();
 			
 
 			// write the select query
@@ -33,7 +32,7 @@ public class ApplicationDao {
 
 			ResultSet set = statement.executeQuery();
 			while (set.next()) {
-				isValidUser.setUserId(set.getString("userId"));
+				isValidUser.setUserId(set.getInt("userId"));
 				isValidUser.setName(set.getString("name"));
 				isValidUser.setRole(set.getInt("role"));
 				
