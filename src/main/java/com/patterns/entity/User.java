@@ -3,7 +3,7 @@ package main.java.com.patterns.entity;
 public class User {
 
 
-	private String userId;
+	private int userId;
 	private String name;
 	private String password;
 	private int role;
@@ -14,10 +14,10 @@ public class User {
 	}
 	
 	
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getName() {
