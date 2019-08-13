@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -218,6 +221,13 @@
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-info">Agregar</button>
                                 </div>
+                                <select name="team">
+                                    <c:forEach items="${listTeam}" var="team">
+                                        <option value="${team.id}">
+                                            ${team.name}
+                                        </option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </form>
 
