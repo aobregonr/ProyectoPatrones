@@ -55,4 +55,9 @@ public class Person {
 	}
 	
 	
+
+	public static Person GetByID(int id2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
