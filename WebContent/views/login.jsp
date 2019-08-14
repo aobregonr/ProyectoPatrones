@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -35,9 +36,11 @@
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body">
-				
-
-				<form action="../login" method="post">
+			
+				<c:if test="${errorLogin!=null}">
+					<p class="login-box-msg">${errorLogin}</p>
+				</c:if>
+				<form action="login" method="post">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" name="username" placeholder="Username" id="usernameIpt">
 						<div class="input-group-append">
@@ -58,17 +61,17 @@
 					<div class="row">
 						<!-- /.col -->
 						<div class="col-12 text-center">
-							<input type="submit" data-user="${requestScope.error}" value="Sign In" id="loginBtn" class="btn btn-primary btn-block btn-flat">
+							<input type="submit" value="Sign in" id="loginBtn" class="btn btn-primary btn-block btn-flat">
 						</div>
 						<!-- /.col -->
 					</div>
 				</form>
 
-				<p class="mb-1 text-center">
+				<!-- <p class="mb-1 text-center">
 					<a href="#">I forgot my password</a>
-				</p>
+				</p> -->
 				<p class="mb-0 text-center">
-					<a href="register.html" class="text-center">Register a new
+					<a href="RegisterUser" class="text-center">Register a new
 						user</a>
 				</p>
 			</div>
@@ -78,12 +81,11 @@
 	<!-- /.login-box -->
 
 	<!-- jQuery -->
-	<script src="../framework/plugins/jquery/jquery.min.js"></script>
+	<script src="<%=request.getContextPath() %>/framework/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
-	<script src="../framework/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- <script src="../core/util/service.js"></script> -->
-	<!-- <script src="../core/login.js"></script> -->
+	<script src="<%=request.getContextPath() %>/framework/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+	<script src="<%=request.getContextPath() %>/core/util/login.js"></script>
 
 </body>
 </html>

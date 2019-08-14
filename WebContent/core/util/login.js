@@ -1,20 +1,25 @@
 
-$(document).ready(function(){
+/*$(document).ready(function(){
     Login();
 });
 
 
 function Login(){
     $("#loginBtn").on("click", function(){
-        
-    	message = this.data-user;
     	validate();
     	
     	if(isValid)
         {
-        	$(".card-body, .login-card-body").prepend("<p class=\"login-box-msg\">User not found, try again.</p>");
+    		$.post("../login")
         } else{
-        	$(".card-body, .login-card-body").prepend("<p class=\"login-box-msg\">Empty fields, try again.</p>");
+        	//$(".card-body, .login-card-body").prepend("<p class=\"login-box-msg\">Empty fields, try again.</p>");
+        	
+        	Swal.fire({
+        	  type: 'error',
+        	  title: 'Oops...',
+        	  text: 'Something went wrong!',
+        	  footer: '<a href>Why do I have this issue?</a>'
+        	})
         }
     });
 }
@@ -30,5 +35,19 @@ function validate(){
     }
     
     return isValid;
+}*/
+
+function Login(pMessage){
+   
+    	
+
+        	Swal.fire({
+        	  type: 'error',
+        	  title: 'Oops...',
+        	  text: pMessage,
+        	  footer: '<a href>Why do I have this issue?</a>'
+        	})
+     
+
 }
 

@@ -11,11 +11,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../framework/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/framework/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../framework/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/framework/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -141,7 +141,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="LogoutServlet" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Sign off
@@ -222,14 +222,14 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../framework/plugins/jquery/jquery.min.js"></script>
+<script src="<%=request.getContextPath() %>/framework/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../framework/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath() %>/framework/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- FastClick -->
-<script src="../framework/plugins/fastclick/fastclick.js"></script>
+<script src="<%=request.getContextPath() %>/framework/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../framework/dist/js/adminlte.min.js"></script>
+<script src="<%=request.getContextPath() %>/framework/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../framework/dist/js/demo.js"></script>
+<script src="<%=request.getContextPath() %>/framework/dist/js/demo.js"></script>
 </body>
 </html>

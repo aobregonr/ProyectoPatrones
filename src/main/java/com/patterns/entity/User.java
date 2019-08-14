@@ -7,6 +7,7 @@ public class User {
 	private String name;
 	private String password;
 	private int role;
+	private int idPerson;
 	
 	public User() {
 		
@@ -38,6 +39,17 @@ public class User {
 	public void setRole(int role) {
 		this.role = role;
 	}
+
+
+	public int getIdPerson() {
+		return idPerson;
+	}
+
+
+	public void setIdPerson(int idPerson) {
+		this.idPerson = idPerson;
+	}
+	
 	
 	
 }

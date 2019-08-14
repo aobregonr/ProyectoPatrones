@@ -3,6 +3,7 @@ package main.java.com.patterns.core;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +30,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = req.getRequestDispatcher("views/dashboard.jsp");
-		dispatcher.include(req, resp);
+		//resp.sendRedirect("views/login.jsp"); 
+		req.getRequestDispatcher("views/login.jsp").forward(req, resp);
 	}
 
 	/**
@@ -56,12 +57,21 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("username", isValidUser.getName());
 			session.setAttribute("role", isValidUser.getRole());
 			//forward to home jsp
-			resp.sendRedirect("views/dashboard.jsp"); 
+			
+			//resp.sendRedirect("views/dashboard.jsp"); 
+			
+			req.getRequestDispatcher("views/dashboard.jsp").forward(req, resp);
+			
 		}
 		else{
-			String errorMessage="Invalid Credentials, please login again!";
-			req.setAttribute("error", errorMessage); 
-			resp.sendRedirect("views/login.jsp"); 
+			String errorMessage="Invalid credentials, please try again or register a new user!";
+			req.setAttribute("errorLogin", errorMessage);
+			req.getRequestDispatcher("views/login.jsp").forward(req, resp);
+			
+			//ServletContext context = getServletContext();
+			//context.removeAttribute("errorLogin");
+			//context.setAttribute("errorLogin",errorMessage);
+			//resp.sendRedirect("views/login.jsp"); 
 			
 			
 			

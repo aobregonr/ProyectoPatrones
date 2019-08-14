@@ -1,6 +1,8 @@
 package main.java.com.patterns.entity;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Person {
 
@@ -33,12 +35,15 @@ public class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
 	public Date getBirthDay() {
 		return birthDay;
 	}
+
 	public void setBirthDay(Date birthDay) {
 		this.birthDay = birthDay;
 	}
+
 	public String getAddress() {
 		return address;
 	}
