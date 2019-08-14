@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -189,7 +193,7 @@
 
         <section class="content">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">Agregar un nuevo equipo</h3>
@@ -218,41 +222,142 @@
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-info">Agregar</button>
                                 </div>
+                                
                             </div>
                         </form>
 
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Asignar usuario a equipo</h3>
+                        </div>
+                        <form action="../ControllerAsignar" class="form-horizontal" method="POST">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label for="nombreEquipo" class="col-sm-2 control-label">Equipo
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="asignarEquipo" id="">
+                                                <%
+                                                 try{
+                                                     Class.forName("com.mysql.jdbc.Driver");
+                                                     Connection conn =
+                                                     DriverManager.getConnection("jdbc:mysql://localhost:3306/recursoshumanos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                                                     "root", "aobregonr1918");
+                                                     String query = "select * from team order by name";
+                                                     Statement st = conn.createStatement();
+                                                     ResultSet rs = st.executeQuery(query);
+                                                     
+                                                     while(rs.next()){
+                                                         %>
+                                                        <option value="<%=rs.getString("id")%>">
+                                                            <%=rs.getString("name") %>
+                                                        </option>
+                                                <%     
+                                                    }
+                                                 } catch(Exception e){
+                                                     out.print(e.getMessage());
+                                                 }
+                                                
+                                                %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="nombreEquipo" class="col-sm-2 control-label">Empleado
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="asignarUsuario" id="">
+                                                    <%
+                                                 try{
+                                                     Class.forName("com.mysql.jdbc.Driver");
+                                                     Connection conn =
+                                                     DriverManager.getConnection("jdbc:mysql://localhost:3306/recursoshumanos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                                                     "root", "aobregonr1918");
+                                                     String query = "select * from user order by name";
+                                                     Statement st = conn.createStatement();
+                                                     ResultSet rs = st.executeQuery(query);
+                                                     
+                                                     while(rs.next()){
+                                                         %>
+                                                    <option value="<%=rs.getString("userId")%>">
+                                                        <%=rs.getString("name") %>
+                                                    </option>
+                                                    <%     
+                                                    }
+                                                 } catch(Exception e){
+                                                     out.print(e.getMessage());
+                                                 }
+                                                
+                                                %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info">Agregar</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
             </div>
+
+            <div class="col-12">
+                <hr>
+                <h2>Equipos</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                try{
+                                    Class.forName("com.mysql.jdbc.Driver");
+                                    Connection conn =
+                                    DriverManager.getConnection("jdbc:mysql://localhost:3306/recursoshumanos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                                    "root", "aobregonr1918");
+                                    String query = "select * from team order by name";
+                                    Statement st = conn.createStatement();
+                                    ResultSet rs = st.executeQuery(query);
+                                    
+                                    while(rs.next()){
+                                        %>
+                                <tr>
+                                    <td><%=rs.getString("name")%></td>
+                                    <td><%=rs.getString("description") %></td>
+                                </tr>
+                                <%     
+                                    }
+                                    } catch(Exception e){
+                                        out.print(e.getMessage());
+                                    }
+                                
+                                %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                     <th>Nombre</th>
+                                     <th>Descripcion</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </section>
-  <!-- Main content -->
-  <section class="content">
-
-      <!-- Default box -->
-      <div class="card">
-          <div class="card-header">
-              <h3 class="card-title">Title</h3>
-
-              <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip"
-                      title="Collapse">
-                      <i class="fas fa-minus"></i></button>
-                  <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                      <i class="fas fa-times"></i></button>
-              </div>
-          </div>
-          <div class="card-body">
-              Start creating your amazing application!
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer">
-              Footer
-          </div>
-          <!-- /.card-footer-->
-      </div>
-      <!-- /.card -->
-
-  </section>
   <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

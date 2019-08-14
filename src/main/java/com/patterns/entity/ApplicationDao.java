@@ -17,8 +17,7 @@ public class ApplicationDao {
 		try {
 
 			// get the connection for the database
-			DBConexion dbc = new DBConexion();
-			Connection connection = dbc.Connect();
+			Connection connection = DBConexion.Connect();
 			
 
 			// write the select query
