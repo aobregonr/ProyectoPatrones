@@ -13,6 +13,7 @@ public class Incapacity extends IPermission{
 	public Incapacity() {
 		super();
 		this.setType(PermissionType.INCAPACITY);
+		this.setPayment(true);
 	}
 
 	@Override

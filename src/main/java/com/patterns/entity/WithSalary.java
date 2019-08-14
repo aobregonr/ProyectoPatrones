@@ -13,6 +13,7 @@ public class WithSalary extends IPermission {
 	public WithSalary() {
 		super();
 		this.setType(PermissionType.WITHSALARY);
+		this.setPayment(true);
 	}
 
 	@Override

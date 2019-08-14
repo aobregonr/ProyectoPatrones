@@ -13,6 +13,8 @@ public class Midday extends IPermission {
 	public Midday() {
 		super();
 		this.setType(PermissionType.MIDDAY);
+		this.setPayment(true);
+		
 	}
 
 	@Override

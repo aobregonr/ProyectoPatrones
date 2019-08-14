@@ -13,6 +13,7 @@ public class Vacation extends IPermission{
 	public Vacation() {
 		super();
 		this.setType(PermissionType.VACATION);
+		this.setPayment(true);
 	}
 
 	@Override

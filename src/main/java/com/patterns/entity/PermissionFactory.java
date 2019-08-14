@@ -20,7 +20,7 @@ public class PermissionFactory implements IPermissionFactory, ISubject{
 	}
 
 	@Override
-	public IPermission NewPermission(PermissionType _type, int _qDays, boolean _payment, Date _startDate,
+	public IPermission NewPermission(PermissionType _type, int _qDays, Date _startDate,
 			String _comment, String _medicDoc) {
 		
 		try {
@@ -44,7 +44,6 @@ public class PermissionFactory implements IPermissionFactory, ISubject{
 					throw new Exception("Invalid Permission type!!");
 			}
 			perm.setQuantityDays(_qDays);
-			perm.setPayment(_payment);
 			perm.setStatus(PermissionStatus.PENDING);
 			perm.setStartDate(_startDate);
 			perm.setComment(_comment);

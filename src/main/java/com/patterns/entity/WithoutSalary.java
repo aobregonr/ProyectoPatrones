@@ -13,6 +13,7 @@ public class WithoutSalary extends IPermission{
 	public WithoutSalary() {
 		super();
 		this.setType(PermissionType.WITHOUTSALARY);
+		this.setPayment(false);
 	}
 
 	@Override
