@@ -140,6 +140,22 @@
               </p>
             </a>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="proyect.jsp" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Projectos
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="team.jsp" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Equipos
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="LogoutServlet" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
