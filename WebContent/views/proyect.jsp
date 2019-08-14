@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +12,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../framework/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/framework/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="../framework/plugins/datatables/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/framework/plugins/datatables/dataTables.bootstrap4.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../framework/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/framework/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -75,7 +79,7 @@
    <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="dashboard.html" class="brand-link">
-      <img src="../framework/dist/img/AdminLTELogo.png"
+      <img src="<%=request.getContextPath() %>/framework/dist/img/AdminLTELogo.png"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
@@ -87,7 +91,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../framework/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<%=request.getContextPath() %>/framework/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="profile.html" class="d-block">User</a>
@@ -209,7 +213,30 @@
                       <div class="form-group row">
                         <label for="idEquipo" class="col-sm-2 control-label">ID del equipo asignado</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="idEquipo" id="idEquipo" placeholder="ID del equipo asignado">
+                          <select class="form-control" name="idEquipo" id="">
+                            <%
+                              try{
+                                  Class.forName("com.mysql.jdbc.Driver");
+                                  Connection conn =
+                                  DriverManager.getConnection("jdbc:mysql://localhost:3306/recursoshumanos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                                  "root", "aobregonr1918");
+                                  String query = "select * from team order by name";
+                                  Statement st = conn.createStatement();
+                                  ResultSet rs = st.executeQuery(query);
+                                  
+                                  while(rs.next()){
+                            %>
+                              <option value="<%=rs.getString("id")%>">
+                                <%=rs.getString("name") %>
+                              </option>
+                            <%     
+                                }
+                              } catch(Exception e){
+                                  out.print(e.getMessage());
+                              }
+                            
+                            %>
+                          </select>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -225,7 +252,56 @@
                   </div>
                 </div>
               </form>
-            
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <hr>
+        <h2>Equipos</h2>
+        <div class="card">
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Nombre del Proyecto</th>
+                  <th>Equipo asignado</th>
+                  <th>Descripcion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection conn =
+                    DriverManager.getConnection("jdbc:mysql://localhost:3306/recursoshumanos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                    "root", "aobregonr1918");
+                    String query = "select * from proyect inner join team where proyect.teamAsing = team.id";
+                    Statement st = conn.createStatement();
+                    ResultSet rs = st.executeQuery(query);
+                    
+                     while(rs.next()){
+                %>
+                  <tr>
+                    <td><%=rs.getString("nameProyect")%></td>
+                    <td><%=rs.getString("name")%></td>
+                    <td><%=rs.getString("description") %></td>
+                  </tr>
+                <%     
+                     }
+                    } catch(Exception e){
+                        out.print(e.getMessage());
+                    }
+                
+                %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Nombre del Proyecto</th>
+                  <th>Equipo asignado</th>
+                  <th>Descripcion</th>
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
       </div>
@@ -233,29 +309,6 @@
   
   <!-- Main content -->
   <section class="content">
-
-    <!-- Default box -->
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Title</h3>
-
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-            <i class="fas fa-minus"></i></button>
-          <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fas fa-times"></i></button>
-        </div>
-      </div>
-      <div class="card-body">
-        Start creating your amazing application!
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer">
-        Footer
-      </div>
-      <!-- /.card-footer-->
-    </div>
-    <!-- /.card -->
 
   </section>
   <!-- /.content -->
@@ -279,15 +332,15 @@
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <script src="../framework/plugins/jquery/jquery.min.js"></script>
+  <script src="<%=request.getContextPath() %>/framework/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="../framework/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<%=request.getContextPath() %>/framework/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- FastClick -->
-  <script src="../framework/plugins/fastclick/fastclick.js"></script>
+  <script src="<%=request.getContextPath() %>/framework/plugins/fastclick/fastclick.js"></script>
   <!-- AdminLTE App -->
-  <script src="../framework/dist/js/adminlte.min.js"></script>
+  <script src="<%=request.getContextPath() %>/framework/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="../framework/dist/js/demo.js"></script>
+  <script src="<%=request.getContextPath() %>/framework/dist/js/demo.js"></script>
   </body>
 
   </html>

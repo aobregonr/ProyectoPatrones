@@ -26,7 +26,7 @@ public class ControllerProyect extends HttpServlet {
 		
 		if(nombreProyecto.isEmpty() || idEquipo.isEmpty() || descripcion.isEmpty())
 		{
-			RequestDispatcher req = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher req = request.getRequestDispatcher("views/login.jsp");
 			req.include(request, response);
 		} else {
 			try {
@@ -43,7 +43,7 @@ public class ControllerProyect extends HttpServlet {
 				result = statement.execute();
 				DBConexion.Disconnect();
 
-				RequestDispatcher req = request.getRequestDispatcher("proyect.jsp");
+				RequestDispatcher req = request.getRequestDispatcher("views/proyect.jsp");
 				req.forward(request, response);
 
 			}catch(SQLException ex) {
